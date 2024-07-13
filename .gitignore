@@ -1,0 +1,32 @@
+# Ignore compiled files
+*.pyc
+*.class
+
+# Ignore virtual environment directories
+venv/
+env/
+
+# Ignore cache files
+__pycache__/
+.cache/
+
+# Ignore database files
+*.db
+
+*.pyc
+# Ignore sensitive or environment-specific information
+config.ini
+secrets.json
+
+# Ignore IDE and editor-specific files
+.vscode/
+.env
+venv/
+# Ignore database files
+db.sqlite3
+# Ignore static files
+staticfiles/
+# Ignore media files
+media/
+# Ignore environment variables file
+.env

@@ -1,0 +1,81 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<style>
+    .container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form{
+        color: aliceblue;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 2rem;
+    }
+
+    .title{
+        color: aliceblue;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+    }
+
+    .back{
+        color: aliceblue;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: right;
+        padding-top: 2rem;
+        padding-right: 2rem;
+    }
+
+    a{
+        text-decoration: none;
+        color: aliceblue;
+    }
+
+    .button{
+        width: 200px;
+        background-color: aliceblue;
+        color: rgb(85, 125, 199);
+        font-weight: 700;
+        font-size: 1rem;
+        height: 1.6rem;
+        border: none;
+        border-radius: 12px;
+        margin-top: 2rem;
+    }
+
+    .form-group{
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+</style>
+<div class="back"><a href="{% url 'index' %}">Go back to Index</a></div>
+<div class="container">
+<div class="title">ZGJIDH MUAJIN PER TE CILIN DO TE SHOHESH TE DHENAT</div><br>
+    <form method="POST" class="form">
+        {% csrf_token %}
+        <div class="form-group" >
+            <label for="id_month" >Muaji:</label><br>
+                {{ form.month }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_year">Viti:</label><br>
+                {{ form.year }}
+        </div>
+
+    
+        <button type="submit"  class="button">SUBMIT</button>
+    </form>
+</div>
+
+{% endblock %}

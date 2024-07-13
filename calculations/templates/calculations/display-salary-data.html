@@ -1,0 +1,122 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<style>
+    .details{
+        color: aliceblue;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        padding-top: 2rem;
+    }
+
+    .title{
+        color: #234372;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-top: 2rem;
+    }
+    
+    a{
+        text-decoration: none;
+        color: aliceblue;
+        font-size: 1.2rem;
+    }
+
+    .back{
+        padding: 8px;
+        text-transform: uppercase;
+    }
+
+     /* Table Styles */
+     table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-top: 2rem;
+        color: rgb(15, 37, 56);
+        background-color: rgb(171,205,239);
+        font-size: 1.1rem;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid rgb(195, 225, 255);
+        width: 200px;
+    }
+
+    th {
+        color: rgb(239, 242, 255);
+        text-transform: uppercase;
+        background-color: #3563AA;
+    }
+
+
+    tbody tr:hover {
+        background-color: #3563AA;
+        color: #E4F0FF;
+    }
+    .a{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .table-container{
+        display: flex;
+        justify-content: center;
+    }
+
+    @media (max-width: 100px) {
+        th, td {
+        padding: 3px;
+        width: fit-content;
+    }
+
+    }
+</style>
+{% if daily_datas %}
+
+<div class="a back">
+<a href="{% url 'daily-form' %}">Go back to the Form</a>
+<div class="title"> Total pay is: {{ total_salary }} leke: base {{ base_payment }} and next month {{ next_month_payment }}</div>
+</div>
+    <div class="title">Salary Details</div>
+    <div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>base FROM</th>
+                <th>base TO</th>
+                <th>base hours</th>
+                <th>extra FROM</th>
+                <th>extra TO</th>
+                <th>extra hours</th>
+                <th>Daily Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in daily_datas %}
+            <tr>
+                <td>{{ data.day }}</td>
+                <td>{{ data.base_start_time  }}</td>
+                <td>{{ data.base_end_time|default:''  }}</td>
+                <td>{{ data.base_hours  }}</td>
+                <td>{{ data.extra_start_time|default:''  }}</td>
+                <td>{{ data.extra_end_time|default:''  }}</td>
+                <td>{{ data.extra }}</td>
+                <td>{{ data.daily_pay }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% else %}
+    <div class="details">You dont have saved datas</div>
+{% endif %}
+{% endblock %}

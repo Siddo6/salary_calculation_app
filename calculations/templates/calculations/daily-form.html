@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<style>
+    .container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form{
+        color: aliceblue;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 2rem;
+    }
+
+    .title{
+        color: aliceblue;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+    }
+
+    .back{
+        color: aliceblue;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: right;
+        padding-top: 2rem;
+        padding-right: 2rem;
+    }
+
+    a{
+        text-decoration: none;
+        color: aliceblue;
+    }
+
+    .button{
+        width: 200px;
+        background-color: aliceblue;
+        color: rgb(85, 125, 199);
+        font-weight: 700;
+        font-size: 1rem;
+        height: 1.6rem;
+        border: none;
+        border-radius: 12px;
+    }
+</style>
+<div class="back"><a href="{% url 'index' %}">Go back to Index</a></div>
+<div class="container">
+<h1 class="title">Calculate Salary</h1>
+<form method="post" action="{% url 'daily-form' %}" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button">SUBMIT</button>
+</form>
+</div>
+{% endblock %}
+

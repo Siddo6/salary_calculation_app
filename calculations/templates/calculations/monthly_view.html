@@ -1,0 +1,106 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<style>
+    .details{
+        color: aliceblue;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        padding-top: 2rem;
+    }
+
+    .title{
+        color: #234372;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+    
+    a{
+        text-decoration: none;
+        color: aliceblue;
+        font-size: 1.2rem;
+    }
+
+    .back{
+        padding: 8px;
+        text-transform: uppercase;
+    }
+
+     /* Table Styles */
+     table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 2rem;
+        color: rgb(15, 37, 56);
+        background-color: rgb(171,205,239);
+        font-size: 1.1rem;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid rgb(195, 225, 255);
+    }
+
+    th {
+        color: rgb(239, 242, 255);
+        text-transform: uppercase;
+        background-color: #3563AA;
+    }
+
+
+    tbody tr:hover {
+        background-color: #3563AA;
+        color: #E4F0FF;
+    }
+    .a{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .back-btn{
+        padding: 16px;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: right;
+    }
+</style>
+{% if daily_datas %}
+
+<div class="a back">
+<a href="{% url 'daily-form' %}">Go back to the Form</a>
+<div class="title"> Total pay is: {{ total_salary }} leke</div>
+</div>
+    <div class="title">Salary Details</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Base Hours</th>
+                <th>Extra Hours</th>
+                <th>Daily Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in daily_datas %}
+            <tr>
+                <td>{{ data.day }}</td>
+                <td>{{ data.base_hours }}</td>
+                <td>{{ data.extra }}</td>
+                <td>{{ data.daily_pay }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% else %}
+<div class="back-btn"><a href="{% url 'index' %}">Go back to Index</a></div>
+    <div class="details">You dont have saved datas</div>
+{% endif %}
+{% endblock %}
