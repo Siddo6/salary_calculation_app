@@ -25,6 +25,15 @@
         display: flex;
         justify-content: center;
     }
+    .error{
+        color: rgb(195, 31, 31);
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+    }
 
     .back{
         color: aliceblue;
@@ -48,15 +57,101 @@
         font-size: 1rem;
         height: 1.6rem;
         border: none;
-        border-radius: 12px;
+        border-radius: 8px;
+        display: block;
+        margin: 0 auto;
+    }
+    .base{
+        display: flex;
+        align-items: center;
+    }
+
+    .base2{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .item{
+        display: block;
+        padding: 8px;
+    }
+
+    .date{
+        display: flex;
+        justify-content: center;
+        gap: 8px;
     }
 </style>
 <div class="back"><a href="{% url 'index' %}">Go back to Index</a></div>
+{% if form.errors %}
+<div class="error">
+    <p>Please correct the following errors:</p>
+    <div>
+        {% for field, error_list in form.errors.items %}
+            {% for error in error_list %}
+                <div>{{ error }}</div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
 <div class="container">
 <h1 class="title">Calculate Salary</h1>
 <form method="post" action="{% url 'daily-form' %}" class="form">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="date">
+    <label for="id_day">Date: </label>
+    {{ form.day }}</div>
+    <br><br>
+    <div class="base">
+        <div class="item">
+            <label for="id_base_start_time">Base Start Time:</label><br>
+            {{ form.base_start_time }}
+        </div>
+    <br><br>
+        <div class="item">
+            <label for="id_base_end_time">Base End Time:</label><br>
+            {{ form.base_end_time }}
+        </div>
+    </div>
+    <br><br>
+    <div class="base">
+        <div class="item">
+            <label for="id_extra_start_time">Extra Start Time:</label><br>
+            {{ form.extra_start_time }}
+        </div>
+    <br><br>
+    <div class="item">
+        <label for="id_extra_end_time">Extra End Time:</label><br>
+        {{ form.extra_end_time }}
+    </div>
+    </div>
+    <br><br>
+    
+    <div class="base2">
+        <div class="item">
+        <label for="id_sunday">Sunday:</label>
+        {{ form.sunday }}</div>
+        <br><br>
+        <div class="item">
+        <label for="id_festivita">Holiday:</label>
+        {{ form.festivita }}</div>
+    </div>
+    <br><br>
+    <div class="base2">
+        <div class="item">
+            <label for="id_ferie">Vacation:</label>
+            {{ form.ferie }}
+        </div>
+    <br><br>
+        <div class="item">
+            <label for="id_recupero">Recovery:</label>
+            {{ form.recupero }}
+        </div>
+    </div>
+    <br><br>
+    
     <button type="submit" class="button">SUBMIT</button>
 </form>
 </div>

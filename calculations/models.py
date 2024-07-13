@@ -19,3 +19,7 @@ class Salary (models.Model):
     def __str__(self):
          return f"Salary for {self.day}"
     
+    class Meta:
+        ordering = ['day']
+        
+    

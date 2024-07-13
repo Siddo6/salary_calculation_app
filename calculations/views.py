@@ -71,9 +71,11 @@ def calculate_salary(request):
                 extra_start_time=extra_start_time,
                 extra_end_time=extra_end_time
             )
+            return redirect(reverse('display-salary-data'))
             
-            
-        return redirect(reverse('display-salary-data'))
+        else:
+            print(form.errors)
+                
     else:  # Handle GET request to display the form
         form = WorkHoursForm()
     
