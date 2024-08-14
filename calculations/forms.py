@@ -1,28 +1,14 @@
 from django import forms
 from .models import Salary
+from django.core.exceptions import ValidationError
 
-class WorkHoursForm(forms.Form):
-    day = forms.DateField(required=True, label='Date', widget=forms.DateInput(attrs={'type': 'date'}))
-    base_start_time = forms.IntegerField(
-        label='Base Start Time', 
-        required=False
-    )
-    base_end_time = forms.IntegerField(
-        label='Base End Time', 
-        required=False
-    )
-    extra_start_time = forms.IntegerField(
-        label='Extra Start Time', 
-        required=False
-    )
-    extra_end_time = forms.IntegerField(
-        label='Extra End Time', 
-        required=False
-    )
-    sunday = forms.BooleanField(required=False, label='Sunday')
-    festivita = forms.BooleanField(required=False, label='Holiday')
-    ferie = forms.BooleanField(required=False, label='Vacation')
-    recupero = forms.BooleanField(required=False, label='Recovery')
+class WorkHoursForm(forms.ModelForm):
+    class Meta:
+        model = Salary
+        fields = ['day', 'base_start_time', 'base_end_time', 'extra_start_time', 'extra_end_time', 'sunday', 'festivita', 'ferie', 'recupero']
+        widgets = {
+            'day': forms.DateInput(attrs={'type': 'date'}),
+        }
     
     def clean(self):
         cleaned_data = super().clean()
@@ -41,12 +27,6 @@ class WorkHoursForm(forms.Form):
             extra_times_provided = extra_start_time is not None and extra_end_time is not None
             if not (base_times_provided or extra_times_provided):
                 raise forms.ValidationError("At least one of Base start/end time or Extra start/end time is required when vacation or recovery is not chosen.")
-
-        # Check if data already exists for the given day
-        if day:
-            existing_salary = Salary.objects.filter(day=day).exists()
-            if existing_salary:
-                raise forms.ValidationError(f"Data already exists for {day}. Please choose a different day.")
 
         return cleaned_data
     
