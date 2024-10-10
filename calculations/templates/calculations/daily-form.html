@@ -82,6 +82,12 @@
         justify-content: center;
         gap: 8px;
     }
+
+    .notes{
+        margin-top: 20px;
+        color: aliceblue;
+        font-size: 16px;
+    }
 </style>
 <div class="back"><a href="{% url 'index' %}">Go back to Index</a></div>
 {% if form.errors %}
@@ -154,6 +160,9 @@
     
     <button type="submit" class="button">SUBMIT</button>
 </form>
+
+<div class="notes">Notes:Set your starting time as a float, example: 16:00 should be written as 16.00, 12:30 as 12.3 and so on
+</div>
 </div>
 {% endblock %}
 
