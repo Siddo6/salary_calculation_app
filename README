@@ -1,0 +1,51 @@
+
+Salary Calculation Program
+
+### Overview
+The Salary Calculation Program is a simple tool that helps user to calculate the monthly salary based on basic hourly pay. It is built for simplicity and ease of use.
+
+### Features
+- Salary Calculation: Automatically calculate monthly salary based on user inputs.
+- Basic Input Validation: Ensures that correct data types are entered.
+Note: The salary calculation is based on Albanian legislation and does not represent the payment calculation methods of any real company.
+The base hourly pay that is already set is only for calculation and testing purposes.
+
+### Tech Stack
+- Python
+- Django
+
+### Installation
+#### Prerequisites:
+- Python 3.11.8
+
+#### Steps:
+1. Clone the repository:
+    git clone https://github.com/Siddo6/salary_calculation_app.git
+    cd salary_calculation_app
+
+2. Create and activate a virtual environment:
+   python -m venv venv
+   source venv/bin/activate  # For Linux/macOS
+   venv\Scripts\activate     # For Windows
+
+3. Install dependencies:
+   pip install -r requirements.txt
+
+4. Apply migrations:
+   python manage.py migrate
+
+5. Run the development server:
+   python manage.py runserver
+
+6. Access the app at `http://127.0.0.1:8000/`.
+
+### Future Enhancements
+- Save Results: Add the ability to save salary results to a file.
+- User Interface: Build a simple graphical user interface (GUI) for ease of use.
+- Tax Calculations: Add functionality to calculate taxes based on income.
+
+### Contributing
+Feel free to contribute by creating issues or submitting pull requests. Make sure to follow the standard guidelines and use feature branches for new functionality.
+
+### License
+This project is licensed under the MIT License. See the LICENSE file for details.
