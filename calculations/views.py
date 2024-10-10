@@ -162,7 +162,9 @@ def edit_salary(request, pk):
         form = WorkHoursForm(request.POST, instance=salary_instance)
         if form.is_valid():
             try:
+                
                 form.save()
+                salary_instance.calculate_salary()
                 return redirect('index')  # Adjust redirection as necessary
             except IntegrityError as e:
                 if 'unique constraint' in str(e).lower():
